@@ -1,11 +1,14 @@
 import './App.css';
-import Logo from './assets/AdobeStock_375387396_Preview.png';
+import Header from './Pages/Header/Header';
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<img src={Logo} alt="Logo" style={{width: '200px', height: 'auto'}} />
+				<Header />
 			</header>
 		</div>
 	);
