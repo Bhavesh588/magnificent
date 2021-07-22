@@ -13,7 +13,7 @@ function Topnav(props) {
             <div className="container">
                 <div className="nav-wrapper">
                     <div className="row">
-                        <div className="col">
+                        <div className="col offset-m1">
                             {
                                 selectedTitle === ''
                                 ? null

@@ -69,17 +69,23 @@ class Main extends Component {
 
         return(
             <main>
-                {
-                    keys.map(key => 
-                        selectedTitle === key
-                        ? nav_list[key].map(list => 
-                            list === nav_list[selectedTitle][selectedValue]
-                            ? nav_list_comp[selectedTitle][selectedValue]
-                            : null
-                        )
-                        : null
-                    )
-                }
+                <div className="container">
+                    <div className="row">
+                        <div className="col offset-m1">
+                            {
+                                keys.map(key => 
+                                    selectedTitle === key
+                                    ? nav_list[key].map(list => 
+                                        list === nav_list[selectedTitle][selectedValue]
+                                        ? nav_list_comp[selectedTitle][selectedValue]
+                                        : null
+                                    )
+                                    : null
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
             </main>
         )
     }
