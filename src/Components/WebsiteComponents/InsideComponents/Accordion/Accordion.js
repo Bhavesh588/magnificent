@@ -1,17 +1,23 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 
 import './Accordion.scss';
 
 function Accordion({ title, list }) {
 
-    const [active, setActive] = useState('')
-    const [height, setHeight] = useState("0px")
-
     const content = useRef(null)
 
-    const toggletoAccordion = () => {
-        setActive(active === "" ? "active" : "")
-        setHeight(active === "active" ? "0px" : `${content.current.scrollHeight}px`)
+    const toggletoAccordion = (title) => {
+        var title_list_len = document.getElementsByClassName('collapsible-header').length
+        for(var i=0; i<title_list_len; i++) {
+            var title_text = document.getElementsByClassName('collapsible-header')[i].textContent
+            if(title === title_text) {
+                document.getElementsByClassName('collapsible-header')[i].classList.add('active')
+                document.getElementsByClassName('collapsible-body')[i].style.maxHeight = `${content.current.scrollHeight}px`
+            } else {
+                document.getElementsByClassName('collapsible-body')[i].style.maxHeight = '0px'
+                document.getElementsByClassName('collapsible-header')[i].classList.remove('active')
+            }
+        }
     }
 
     const changetoactive = (title, val) => {
@@ -39,8 +45,8 @@ function Accordion({ title, list }) {
     return (
         <ul className="collapsible">
             <li className="bold">
-                <a href='#!' className={`collapsible-header ${active}`} onClick={toggletoAccordion}>{title}</a>
-                <div ref={content} style={{maxHeight: `${height}`}} className="collapsible-body">
+                <a href='#!' className={`collapsible-header`} onClick={() => toggletoAccordion(title)}>{title}</a>
+                <div ref={content} style={{maxHeight: '0px'}} className="collapsible-body">
                     <ul className="All-list">
                         {
                             list.map((l, i) => 
