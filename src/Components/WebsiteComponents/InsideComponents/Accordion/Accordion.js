@@ -1,18 +1,26 @@
 import React, { useRef } from 'react'
+import { connect } from 'react-redux'
 
 import './Accordion.scss';
 
-function Accordion({ title, list }) {
+function Accordion({ title, list, ...props }) {
 
     const content = useRef(null)
+
+    const { select_title, select_value, selectedTitle, selectedValue } = props
 
     const toggletoAccordion = (title) => {
         var title_list_len = document.getElementsByClassName('collapsible-header').length
         for(var i=0; i<title_list_len; i++) {
             var title_text = document.getElementsByClassName('collapsible-header')[i].textContent
             if(title === title_text) {
-                document.getElementsByClassName('collapsible-header')[i].classList.add('active')
-                document.getElementsByClassName('collapsible-body')[i].style.maxHeight = `${content.current.scrollHeight}px`
+                if(document.getElementsByClassName('collapsible-header')[i].classList[1] !== 'active') {
+                    document.getElementsByClassName('collapsible-header')[i].classList.add('active')
+                    document.getElementsByClassName('collapsible-body')[i].style.maxHeight = `${content.current.scrollHeight}px`
+                } else {
+                    document.getElementsByClassName('collapsible-body')[i].style.maxHeight = '0px'
+                    document.getElementsByClassName('collapsible-header')[i].classList.remove('active')
+                }
             } else {
                 document.getElementsByClassName('collapsible-body')[i].style.maxHeight = '0px'
                 document.getElementsByClassName('collapsible-header')[i].classList.remove('active')
@@ -28,6 +36,8 @@ function Accordion({ title, list }) {
                 var list_len = document.getElementsByClassName('All-list')[i].getElementsByTagName('li').length
                 for(var j=0; j<list_len; j++) {
                     if(j === val) {
+                        select_value(j)
+                        select_title(title)
                         document.getElementsByClassName('All-list')[i].getElementsByTagName('li')[j].classList.add('active')
                     } else {
                         document.getElementsByClassName('All-list')[i].getElementsByTagName('li')[j].classList.remove('active')
@@ -50,7 +60,11 @@ function Accordion({ title, list }) {
                     <ul className="All-list">
                         {
                             list.map((l, i) => 
-                                <li key={i} onClick={() => changetoactive(title, i)}>
+                                i === selectedValue && title === selectedTitle
+                                ? <li className="active" key={i} onClick={() => changetoactive(title, i)}>
+                                    <a href="#!">{l}</a>
+                                </li>
+                                : <li key={i} onClick={() => changetoactive(title, i)}>
                                     <a href="#!">{l}</a>
                                 </li>
                             )
@@ -62,4 +76,28 @@ function Accordion({ title, list }) {
     )
 }
 
-export default Accordion
+const mapDispatchToProps = (dispatch) => {
+    return {
+        select_value: (val) => {
+            dispatch({
+                type: 'SELECTEDVALUE',
+                item: val
+            })
+        },
+        select_title: (val) => {
+            dispatch({
+                type: 'SELECTEDTITLE',
+                item: val
+            })
+        }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        selectedValue: state.selectedValue,
+        selectedTitle: state.selectedTitle
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Accordion)

@@ -4,11 +4,15 @@ import React, { Component } from 'react';
 import './Header.scss';
 
 import Sidebar from '../../Components/WebsiteComponents/Sidebar/Sidebar';
+import Topnav from '../../Components/WebsiteComponents/Topnav/Topnav';
 
 class Header extends Component {
     render() {
         return(
-            <Sidebar />
+            <header>
+                <Topnav />
+                <Sidebar />
+            </header>
         )
     }
 }

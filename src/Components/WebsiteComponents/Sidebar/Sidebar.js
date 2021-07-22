@@ -1,5 +1,6 @@
 // Both container and nav-mobile will be in this file and this will be in Header Page
 import React from 'react'
+import { connect } from 'react-redux'
 
 import './Sidebar.scss'
 import Logo from '../../../assets/AdobeStock_375387396_Preview.png';
@@ -7,7 +8,10 @@ import Logo from '../../../assets/AdobeStock_375387396_Preview.png';
 import Search from '../InsideComponents/Search/Search';
 import Accordion from '../InsideComponents/Accordion/Accordion';
 
-function Sidebar() {
+function Sidebar(props) {
+
+    const { nav_list } = props
+    const keys = Object.keys(nav_list)
 
     return (
         <ul className="sidenav">
@@ -20,13 +24,20 @@ function Sidebar() {
                 <Search />
             </li>
             <li className="no-padding">
-                <Accordion title="CSS" list={['Color', 'Grid', 'Helpers', 'Media', 'Pulse', 'Sass', 'Shadow', 'Table', 'Transitions', 'Typography']} />
-                <Accordion title="Components" list={['Badges', 'Breadcrumbs', 'Buttons', 'Cards', 'Collections', 'Floating Action Button', 'Footer', 'Icons', 'Navbar', 'Pagination', 'Preloader', 'Searchbar', 'Sidebar']} />
-                <Accordion title="JavaScript" list={['Auto Init', 'Carousal', 'Collapsible', 'Dropdown', 'Feature Discovery', 'Media', 'Modals', 'Parallax', 'Pushpin', 'Scrollspy', 'Sidenav', 'Tabs', 'Toasts', 'Tooltips', 'Waves']} />
-                <Accordion title="Form" list={['Autocomplete', 'Checkboxs', 'Chips', 'Pickers', 'Radio Buttons', 'Range', 'Select', 'Switches', 'Text Inputs']} />
+                {
+                    keys.map((key, index) =>
+                        <Accordion key={index} title={key} list={nav_list[key]} />
+                    )
+                }
             </li>
         </ul>
     )
 }
 
-export default Sidebar
+const mapStateToProps = (state) => {
+    return {
+        nav_list: state.nav_list
+    }
+}
+
+export default connect(mapStateToProps)(Sidebar)

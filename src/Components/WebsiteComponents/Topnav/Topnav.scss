@@ -1,0 +1,22 @@
+.top-nav {
+    height: 110px;
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+    .nav-wrapper {
+        height: 100%;
+
+        .row {
+
+            .col {
+                margin: 0 8%;
+
+                .head {
+                    padding-top: 22px;
+                    font-weight: 300;
+                    font-size: 4rem;
+                    color: rgb(172, 31, 35);
+                }
+            }
+        }
+    }
+}
