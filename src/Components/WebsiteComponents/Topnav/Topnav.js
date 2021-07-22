@@ -10,10 +10,10 @@ function Topnav(props) {
 
     return (
         <nav className="top-nav">
-            <div className="container">
+            <div className="container h-100">
                 <div className="nav-wrapper">
-                    <div className="row">
-                        <div className="col offset-m1">
+                    <div className="row h-100">
+                        <div className="col offset-m1 d-flex align-items-center">
                             {
                                 selectedTitle === ''
                                 ? null

@@ -1,3 +1,5 @@
+@import '../../../responsive/mixin';
+
 .sidenav {
     width: 300px;
     height: 100vh;
@@ -8,6 +10,9 @@
     overflow-y: auto;
     left: 0;
     top: 0;
+    z-index: 6;
+    background-color: white;
+    transition: 0.25s ease-in-out;
 
     .logo {
         text-align: center;
@@ -19,6 +24,10 @@
 
     .no-padding {
         padding: 0 !important;
+    }
+
+    @include respond(tab-port) {
+        transform: translateX(-105%);
     }
 }
 

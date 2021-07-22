@@ -39,6 +39,11 @@ function Accordion({ title, list, ...props }) {
                         select_value(j)
                         select_title(title)
                         document.getElementsByClassName('All-list')[i].getElementsByTagName('li')[j].classList.add('active')
+                        if(window.innerWidth <= 900) {
+                            document.getElementsByClassName('sidenav-overlay')[0].style.display = 'none'
+                            document.getElementsByClassName('sidenav-overlay')[0].style.opacity = '0'
+                            document.getElementsByClassName('sidenav')[0].style.transform = 'translateX(-105%)'
+                        }
                     } else {
                         document.getElementsByClassName('All-list')[i].getElementsByTagName('li')[j].classList.remove('active')
                     }
