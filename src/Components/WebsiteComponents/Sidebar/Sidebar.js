@@ -26,7 +26,9 @@ function Sidebar(props) {
             <li className="no-padding">
                 {
                     keys.map((key, index) =>
-                        <Accordion key={index} title={key} list={nav_list[key]} />
+                        keys.length-1 !== index
+                        ? <Accordion key={index} title={key} list={nav_list[key]} bottom={false} />
+                        : <Accordion key={index} title={key} list={nav_list[key]} bottom={true} />
                     )
                 }
             </li>

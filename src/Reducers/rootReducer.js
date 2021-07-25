@@ -1,12 +1,15 @@
+import { Badges } from "./Badgesdata"
+
 const initialState = {
     nav_list: {
-        CSS: ['Color', 'Grid', 'Helpers', 'Media', 'Pulse', 'Sass', 'Shadow', 'Table', 'Transitions', 'Typography'],
         Components: ['Badges', 'Breadcrumbs', 'Buttons', 'Cards', 'Collections', 'Floating Action Button', 'Footer', 'Icons', 'Navbar', 'Pagination', 'Preloader', 'Searchbar', 'Sidebar'],
         JavaScript: ['Auto Init', 'Carousal', 'Collapsible', 'Dropdown', 'Feature Discovery', 'Media', 'Modals', 'Parallax', 'Pushpin', 'Scrollspy', 'Sidenav', 'Tabs', 'Toasts', 'Tooltips', 'Waves'],
-        Form: ['Autocomplete', 'Checkboxs', 'Chips', 'Pickers', 'Radio Buttons', 'Range', 'Select', 'Switches', 'Text Inputs']
+        Form: ['Autocomplete', 'Checkboxs', 'Chips', 'Pickers', 'Radio Buttons', 'Range', 'Select', 'Switches', 'Text Inputs'],
+        CSS: ['Color', 'Grid', 'Helpers', 'Media', 'Pulse', 'Sass', 'Shadow', 'Table', 'Transitions', 'Typography'],
     },
-    selectedTitle: 'CSS',
-    selectedValue: 0
+    selectedTitle: 'Components',
+    selectedValue: 0,
+    Badges: Badges
 }
 
 const rootReducer = (state = initialState, action) => {

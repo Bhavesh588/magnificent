@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './Accordion.scss';
 
-function Accordion({ title, list, ...props }) {
+function Accordion({ title, list, bottom, ...props }) {
 
     const content = useRef(null)
 
@@ -59,7 +59,7 @@ function Accordion({ title, list, ...props }) {
 
     return (
         <ul className="collapsible">
-            <li className="bold">
+            <li className="bold" style={{marginBottom: `${bottom ? '160px' : '0px'}`}}>
                 <a href='#!' className={`collapsible-header`} onClick={() => toggletoAccordion(title)}>{title}</a>
                 <div ref={content} style={{maxHeight: '0px'}} className="collapsible-body">
                     <ul className="All-list">
